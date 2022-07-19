@@ -39,8 +39,8 @@
                 <StackLayout
                     Grid.Row="0"
                     Grid.ColumnSpan="2"
-                    Margin="{OnPlatform Android='30,40,0,0',
-                                        iOS='30,60,0,0'}"
+                    Margin="{OnPlatform Android='30,20,0,0',
+                                        iOS='30,10,0,0'}"
                     HorizontalOptions="FillAndExpand"
                     Orientation="Horizontal"
                     Spacing="20">
@@ -61,7 +61,7 @@
                         Source="bell.png"
                         VerticalOptions="Center" />
                 </StackLayout>
-                 <SearchBar
+                <SearchBar
                         Grid.Row="1"
                         Grid.ColumnSpan="2"
                         Margin="30,15,35,10"
@@ -313,13 +313,27 @@
                     Margin="30,0,0,0"
                     HorizontalScrollBarVisibility="Never"
                     VerticalScrollBarVisibility="Never"
-                    ItemsSource="{Binding BestPrices}">
+                    ItemsSource="{Binding BestPrices}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedBestPrice}"
+                    SelectionChangedCommand="{Binding SelectionCommand}" 
+                    >
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+
+                                </VisualStateManager.VisualStateGroups>
                                 <Frame
                                     Margin="0,14,0,0"
                                     Padding="10"
@@ -395,7 +409,8 @@
                                     Aspect="AspectFit"
                                     HorizontalOptions="Start"
                                     Source="{Binding image}"
-                                    WidthRequest="125" />
+                                    WidthRequest="125"
+                                    HeightRequest="100"/>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

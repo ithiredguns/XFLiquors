@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Xamarin.Forms;
-using XFLiquors.ViewModel;
+ 
 using XFLiquors.Views;
 
 namespace XFLiquors.ViewModels

@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fonticons="clr-namespace:XFLiquors.Fonts"
+    xmlns:renderers="clr-namespace:XFLiquors.Renderers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:shadows="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+    x:Class="XFLiquors.Views.DetailsPage"
+    NavigationPage.HasNavigationBar="False" >
+
+
+    <Grid BackgroundColor="{StaticResource colorBlack}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="{OnPlatform Android='.48*', iOS='.85*'}" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <StackLayout Grid.Row="0" Grid.ColumnSpan="2" >
+
+            <Frame   Margin="8,30,0,10"
+                     Padding="8,6"
+                     BackgroundColor="{StaticResource colorOrangeD99}"
+                     CornerRadius="8"
+                     HasShadow="False"
+                     HorizontalOptions="Start">
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                                                        FontFamily="FontFontello"
+                                                        FontSize="18"
+                                                        Text="{x:Static fonticons:FontIcons.ArrowRight}" RotationY="180" />
+                    
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToDiscoverPageCommand}" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
+            </Frame>
+        </StackLayout>
+        
+        <StackLayout
+            Grid.RowSpan="4"
+            Grid.Column="1"
+            BackgroundColor="{StaticResource colorBlack222}"
+            WidthRequest="110"  />
+
+        <Image
+            Grid.RowSpan="4"
+            Grid.ColumnSpan="2"
+            Aspect="AspectFit"
+            HeightRequest="{OnPlatform Android='250'}"
+            HorizontalOptions="Center"
+            Opacity="0.1"
+            Source="background.png"
+            VerticalOptions="End" />
+        <Image
+            Grid.RowSpan="4"
+            
+            Grid.ColumnSpan="2"
+            Aspect="AspectFit"
+            HeightRequest="{OnPlatform Android='350'}"
+            HorizontalOptions="Start"
+            Source="background_line.png"
+            VerticalOptions="End" />
+        <Image
+            Grid.Row="1" 
+            Grid.ColumnSpan="2"
+            Margin="{OnPlatform Android='0,35,0,0'}" 
+            Aspect="AspectFit"
+            HorizontalOptions="CenterAndExpand"
+            Source="{Binding SelectedLiquor.image}"
+            VerticalOptions="FillAndExpand" />
+
+        <StackLayout
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Margin="35,0">
+            <Label
+                FontFamily="FontAbhayaLibreBold"
+                FontSize="35"
+                Text="{Binding SelectedLiquor.description}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" />
+            <!--<Label
+                Margin="0,-25,0,0"
+                CharacterSpacing="10"
+                FontSize="{OnPlatform Android='20',
+                                      iOS='26'}"
+                Text="Liquors" />-->
+            <Label
+                Margin="0,25,0,0"
+                FontSize="{OnPlatform Android='18',
+                                      iOS='18'}"
+                Text="{Binding SelectedLiquor.longDescription}" />
+            <Label
+                Margin="0,25,0,0"
+                FontSize="{OnPlatform Android='18',
+                                      iOS='18'}"
+               >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Rating: " TextColor="{StaticResource colorOrangeF6}" />
+                        <Span Text="{Binding SelectedLiquor.rating}" />
+
+                    </FormattedString>
+
+                </Label.FormattedText>
+
+            </Label>
+            <Label
+                Margin="0,25,0,0"
+                FontSize="{OnPlatform Android='18',
+                                      iOS='18'}"
+                Text="{Binding SelectedLiquor.weight}" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Weight: " TextColor="{StaticResource colorOrangeF6}" />
+                        <Span Text="{Binding SelectedLiquor.weight}" />
+                        <Span Text=" ml"/>
+                    </FormattedString>
+
+                </Label.FormattedText>
+
+            </Label>
+
+
+        </StackLayout>
+        <!--<StackLayout
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Margin="35,35,25,35"
+            Orientation="Vertical"
+            VerticalOptions="End">
+
+            <shadows:Shadows
+                CornerRadius="10"
+                HorizontalOptions="Start"
+                Shades="{shadows:SingleShade BlurRadius=50,
+                                             Offset='10,20',
+                                             Opacity=0.2,
+                                             Color={StaticResource colorOrange}}">
+                <Frame
+                    Padding="10"
+                    BackgroundColor="{StaticResource colorOrange}"
+                    CornerRadius="18"
+                    HasShadow="False"
+                    HorizontalOptions="EndAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <Label
+                            FontFamily="FontBarlowSemiBold"
+                            FontSize="Medium"
+                            Text="Ok" />
+
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToDiscoverPageCommand}" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </shadows:Shadows>
+        </StackLayout>-->
+       
+    </Grid>
+</ContentPage>
+

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace XFLiquors.ViewModel
+namespace XFLiquors.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using XFLiquors.Models;
-using XFLiquors.ViewModel;
+using XFLiquors.Views;
 
 namespace XFLiquors.ViewModels
 {
@@ -25,9 +27,34 @@ namespace XFLiquors.ViewModels
 
         public Command NavigateToMainPageCommand { get; }
         public Command SelectGroupCommand { get; }
+        public ICommand SelectionCommand => new Command(DisplayDetail);
+
+        private void DisplayDetail()
+        {
+            if(SelectedBestPrice!=null)
+            {
+                var viewModel = new DetailsPageViewModel { SelectedLiquor = SelectedBestPrice };
+                var detailsPage = new DetailsPage { BindingContext = viewModel };
+                SelectedBestPrice = null;
+                Navigation.PushAsync(detailsPage, true);
+                
+            }
+        }
+
         public ObservableCollection<Group> Groups { get; set; }
         public ObservableCollection<Product> Products { get; set; }
         public ObservableCollection<Product> BestPrices { get; set; }
+
+        private Product selectedBestPrice;
+        public Product SelectedBestPrice
+        {
+            get { return selectedBestPrice; }
+            set
+            {
+                selectedBestPrice = value;
+                OnPropertyChanged();
+            }
+        }
 
         void GetGroups()
         {
@@ -110,7 +137,10 @@ namespace XFLiquors.ViewModels
                 image = "dalmore.png",
                 description = "The Dalmore 12 Year",
                 weight = 750,
-                price = 64.99
+                price = 64.99,
+                rating=3.0,
+                groupId= 1,
+                longDescription = "The Dalmore 12 is recognized as a whisky with character far beyond its age. The spirit is initially matured in American white oak ex-Bourbon casks, yielding soft vanilla and honey notes."
             });
 
             BestPrices.Add(new Product()
@@ -118,7 +148,20 @@ namespace XFLiquors.ViewModels
                 image = "charlotte.png",
                 description = "Bruichladdich Port Charlotte Scotch",
                 weight = 700,
-                price = 63.99
+                price = 63.99,
+                rating = 4.0,
+                groupId = 1,
+                longDescription = "This Port Charlotte 10 year old has been conceived, distilled, matured and bottled on Islay alone."
+            });
+            BestPrices.Add(new Product()
+            {
+                image = "jack_daniels.png",
+                description = "Jack Daniel's Old No. 7 Tennessee",
+                rating = 4.7,
+                weight = 1.75,
+                price = 45.99,
+                groupId = 1,
+                longDescription = "Mellowed drop by drop through 10-feet of sugar maple charcoal, then matured in handcrafted barrels of our own making."
             });
         }
 
@@ -141,6 +184,8 @@ namespace XFLiquors.ViewModels
                 Groups[index].backGroundColor = "#D99D60";
                 Groups[index].textColor = "#FFFFFF";
             }
+
+            //TO DO --> filter 
         }
 
         void UnselectGroupItems()

@@ -1,4 +1,4 @@
-﻿using XFLiquors.ViewModel;
+﻿using XFLiquors.ViewModels;
 
 namespace XFLiquors.Models
 {

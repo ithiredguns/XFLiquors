@@ -7,5 +7,7 @@
         public double price { get; set; }
         public double weight { get; set; }
         public string image { get; set; }
+        public string longDescription { get; set; }
+        public int groupId { get; set; }
     }
 }
