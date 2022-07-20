@@ -2,10 +2,11 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:fonticons="clr-namespace:XFLiquors.Fonts"
     xmlns:renderers="clr-namespace:XFLiquors.Renderers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:shadows="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+    xmlns:shadows="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows" xmlns:converter="clr-namespace:XFLiquors.Converters"
     x:Class="XFLiquors.Views.DetailsPage"
     NavigationPage.HasNavigationBar="False" >
 
@@ -34,14 +35,14 @@
                                                         FontFamily="FontFontello"
                                                         FontSize="18"
                                                         Text="{x:Static fonticons:FontIcons.ArrowRight}" RotationY="180" />
-                    
+
                 </StackLayout>
                 <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavigateToDiscoverPageCommand}" NumberOfTapsRequired="1" />
-                    </Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToDiscoverPageCommand}" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
             </Frame>
         </StackLayout>
-        
+
         <StackLayout
             Grid.RowSpan="4"
             Grid.Column="1"
@@ -73,7 +74,13 @@
             Aspect="AspectFit"
             HorizontalOptions="CenterAndExpand"
             Source="{Binding SelectedLiquor.image}"
-            VerticalOptions="FillAndExpand" />
+            VerticalOptions="FillAndExpand"
+            xct:TouchEffect.AnimationDuration="250"
+            xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+            xct:TouchEffect.PressedScale="0.8"
+            xct:TouchEffect.PressedOpacity="0.6"
+
+            />
 
         <StackLayout
             Grid.Row="2"
@@ -102,7 +109,7 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Rating: " TextColor="{StaticResource colorOrangeF6}" />
-                        <Span Text="{Binding SelectedLiquor.rating}" />
+                        <Span Text="{Binding SelectedLiquor.rating, Converter={converter:IsNumberIntConverter}}" />
 
                     </FormattedString>
 
@@ -160,7 +167,7 @@
                 </Frame>
             </shadows:Shadows>
         </StackLayout>-->
-       
+
     </Grid>
 </ContentPage>
 

@@ -70,6 +70,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DeviceInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -133,6 +134,9 @@
     <PackageReference Include="Xamarin.Forms.PancakeView">
       <Version>2.3.0.759</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.CommunityToolkit">
+      <Version>2.0.4</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -143,6 +147,12 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\black_art%403x.png" />
+    <BundleResource Include="Resources\coors%401x.png" />
+    <BundleResource Include="Resources\coors%402x.png" />
+    <BundleResource Include="Resources\coors%403x.png" />
+    <BundleResource Include="Resources\silveroak%401x.png" />
+    <BundleResource Include="Resources\silveroak%402x.png" />
+    <BundleResource Include="Resources\silveroak%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\black_art.png" />
@@ -239,5 +249,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\jack_daniels%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

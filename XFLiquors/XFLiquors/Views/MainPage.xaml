@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:fonticons="clr-namespace:XFLiquors.Fonts"
     xmlns:renderers="clr-namespace:XFLiquors.Renderers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -82,8 +83,14 @@
             Orientation="Vertical"
             VerticalOptions="Start">
 
+            <Label
+                Margin="0,5,0,0"
+                FontSize="{OnPlatform Android='14',
+                                      iOS='14'}"
+                Text="{Binding DeviceModel}"
+                TextColor="{StaticResource colorRedF5}"/>
              <Label
-                Margin="0,25,0,0"
+                Margin="0,5,0,0"
                 FontSize="{OnPlatform Android='18',
                                       iOS='18'}"
                 Text="Please login to continue"
@@ -127,8 +134,16 @@
                     BackgroundColor="{StaticResource colorOrange}"
                     CornerRadius="18"
                     HasShadow="False"
-                    HorizontalOptions="EndAndExpand">
-                    <StackLayout Orientation="Horizontal" Spacing="10">
+                    HorizontalOptions="EndAndExpand"
+                    xct:TouchEffect.AnimationDuration="250"
+                    xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+                    xct:TouchEffect.PressedScale="0.8"
+                    xct:TouchEffect.PressedOpacity="0.6"
+                    xct:TouchEffect.NormalBackgroundColor="{StaticResource colorOrange}"
+                    xct:TouchEffect.PressedBackgroundColor="Green"
+                                 
+                    >
+                    <StackLayout Orientation="Horizontal" Spacing="10" >
                         <Label
                             FontFamily="FontBarlowSemiBold"
                             FontSize="Medium"
